@@ -10,7 +10,7 @@ function startTime() {
 
   if ((time.m.toString() === '00' || time.m.toString() === '30') && i === true) {
     i = false;
-    newBackground(h);
+    newBackground();
     var iReset = setTimeout(function() { i = true }, 120000);
   }
 
@@ -41,39 +41,68 @@ function checkZero(i) {
   return i;
 }
 
-function newBackground(h) {
-  var video = document.querySelector('#media > video');
+function newBackground() {
+  var video = document.querySelector('video');
+  var request = new XMLHttpRequest();
 
-  if (h >= 9 && h <= 6) {
-    video.classList.add('hide');
-    video.classList.remove('show');
-  } else {
-    var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    if (request.readyState === 4 && request.status === 200) {
+      var results = JSON.parse(request.responseText).data.children;
+      var urls = results.map(function(el) { return el.data.url });
+      var rand = Math.floor(Math.random() * 25);
+      var newSrc = urls[rand]
+      newSrc = newSrc.substring(0, newSrc.lastIndexOf('.')) + '.mp4';
 
-    request.onreadystatechange = function() {
-      if (request.readyState === 4 && request.status === 200) {
-        var results = JSON.parse(request.responseText).data.children;
-        var urls = results.map(function(el) { return el.data.url });
-        var rand = Math.floor(Math.random() * 25);
-        var newSrc = urls[rand]
-        newSrc = newSrc.substring(0, newSrc.lastIndexOf('.')) + '.mp4';
-
-        document.querySelector('#media > video > source').src = newSrc;
-        video.load();
-        video.style.display = 'block';
-      }
+      document.querySelector('video > source').src = newSrc;
+      video.load();
     }
+  }
 
-    request.open('Get', 'https://www.reddit.com/r/Cinemagraphs/top.json?t=all&limit=50');
-    request.send();
+  request.open('Get', 'https://www.reddit.com/r/Cinemagraphs/top.json?t=all&limit=50');
+  request.send();
+}
+
+function toggleFullScreen() {
+  var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
+
+  if (!fullscreenElement) {
+    launchFullscreen(document.documentElement);
+  } else {
+    exitFullscreen();
+  }
+}
+
+function launchFullscreen(element) {
+  if(element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if(element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if(element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else if(element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  }
+}
+
+function exitFullscreen() {
+  if(document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if(document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if(document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
   }
 }
 
 document.addEventListener("DOMContentLoaded", function(event){
   startTime();
 
+  document.querySelector('#sec').addEventListener('click', function(e) {
+    newBackground();
+  });
+
   document.querySelector('#ampm').addEventListener('click', function(e) {
-    
+    toggleFullScreen();
   });
 
   document.querySelector('#time').addEventListener('click', function(e) {

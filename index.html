@@ -3,14 +3,24 @@
   <head>
     <title>DeskClock</title>
     <link type="text/css" rel="stylesheet" href="index.css">
-    <link href="https://fonts.googleapis.com/css?family=Rokkitt" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed" rel="stylesheet">
     <script type="text/javascript" src="clock.js"></script>
   </head>
   <body>
     <div id="clock">
-      <div></div>
-      <div><h1 id="time"></h1></div>
-      <div><h4 id="sec"></h4><h4 id="ampm"></h4></div>
+      <div id="left">
+        <div class="top"></div>
+        <div class="middle"></div>
+        <div class="bottom"></div>
+      </div>
+      <div id="center">
+        <h1 id="time"></h1>
+      </div>
+      <div id="right">
+        <div class="top"></div>
+        <div class="middle"><h4 id="sec"></h4><h4 id="ampm"></h4></div>
+        <div class="bottom"></div>
+      </div>
     </div>
     <div id="media">
       <video autoplay loop>
