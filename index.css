@@ -63,6 +63,32 @@ video {
   z-index: 0
 }
 
+.hide {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 2s, opacity 1s linear;
+}
+
+.show {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 2s, opacity 1s linear;
+}
+
+.fadeIn {
+  opacity:1;
+  -moz-animation   : fadein 1s linear;
+  -webkit-animation: fadein 1s linear;
+  animation        : fadein 1s linear;
+}
+
+.fadeOut {
+  opacity:0;
+  -moz-animation   : fadeout 1s linear;
+  -webkit-animation: fadeout 1s linear;
+  animation        : fadeout 1s linear;
+}
+
 @-webkit-keyframes fadeout {
     0% {opacity:1;}
     100% {opacity:0;}
@@ -70,12 +96,6 @@ video {
 @keyframes fadeout {
     0% {opacity:1;}
     100% {opacity:0;}
-}
-.fadeOut {
-  opacity:0;
-  -moz-animation   : fadeout 1s linear;
-  -webkit-animation: fadeout 1s linear;
-  animation        : fadeout 1s linear;
 }
 
 @-webkit-keyframes fadein {
@@ -85,10 +105,4 @@ video {
 @keyframes fadein {
     100% {opacity:0;}
     0% {opacity:1;}
-}
-.fadeIn {
-  opacity:1;
-  -moz-animation   : fadein 1s linear;
-  -webkit-animation: fadein 1s linear;
-  animation        : fadein 1s linear;
 }
