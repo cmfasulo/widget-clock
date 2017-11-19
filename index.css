@@ -5,17 +5,14 @@
 
 html {
   background-color: #000;
+  font-family: 'Barlow Condensed', sans-serif;
+  color: #ffffff;
+  text-shadow: 0 0 30px #2d2d2d;
 }
 
 html, body, #clock, #media {
   width: 100vw;
   height: 100vh;
-}
-
-h1, h4 {
-  color: #ffffff;
-  text-shadow: 0 0 30px #2d2d2d;
-  font-family: 'Barlow Condensed', sans-serif;
 }
 
 h1 {
@@ -46,33 +43,83 @@ video {
   flex-flow: row nowrap;
 }
 
-#clock, #left, #center, #right, #media {
+#clock, #left, #center, #right, #media, #weather, #high-low, #astro, #sun, .top, .bottom {
   display: flex;
 }
 
-#left, #right {
-  width: 20%;
+#left, #right, #high-low, #sun {
   flex-flow: column nowrap;
 }
 
-#left {
-  text-align: right;
+#left, #right {
+  width: 25%;
+}
+
+#left div, #sec, #ampm {
+  text-align: left;
 }
 
 #center {
-  width: 60%;
+  width: 50%;
   text-align: center;
   justify-content: center;
   align-items: center;
 }
+
+#right {
+  text-align: right;
+}
+
+#right div {
+  justify-content: flex-end;
+}
+
 
 #media {
   justify-content: center;
   align-items: center;
 }
 
+#weather, #astro {
+  height: 40%;
+  align-items: center;
+}
+
+#weather-icon, #moon-icon {
+  height: 60px;
+}
+
+#current-temp {
+  font-size: 70px;
+}
+
+#high-low, #sun, #fact, #date {
+  font-size: 30px;
+}
+
+#high-low, #moon-icon {
+  padding-left: 10px;
+}
+
+#sunrise::before {
+  content: url('images/Sunrise.png');
+}
+
+#sunset::before {
+  content: url('images/Sunset.png');
+}
+
+#sunrise::before, #sunset::before {
+  padding-right: 5px;
+}
+
 .top, .bottom {
-  height: 40%
+  height: 40%;
+  padding: 10px;
+}
+
+.bottom {
+  align-items: flex-end;
 }
 
 .middle {

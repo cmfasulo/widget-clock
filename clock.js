@@ -1,6 +1,22 @@
 var i = true;
 var background = true;
 
+$(function() {
+  startTime();
+
+  $('#sec').on('click', function(e) {
+    newBackground();
+  });
+
+  $('#ampm').on('click', function(e) {
+    toggleFullScreen();
+  });
+
+  $('#time').on('click', function(e) {
+    toggleBackground();
+  });
+});
+
 function startTime() {
   var today = new Date();
   var h = today.getHours();
@@ -14,9 +30,10 @@ function startTime() {
     var iReset = setTimeout(function() { i = true }, 120000);
   }
 
-  document.getElementById('time').innerHTML = time.h + ":" + time.m;
-  document.getElementById('sec').innerHTML = time.s;
-  document.getElementById('ampm').innerHTML = time.ampm;
+  $('#time').html(time.h + ":" + time.m);
+  $('#sec').html(time.s);
+  $('#ampm').html(time.ampm);
+
   var t = setTimeout(startTime, 500);
 }
 
@@ -42,24 +59,19 @@ function checkZero(i) {
 }
 
 function newBackground() {
-  var video = document.querySelector('video');
-  var request = new XMLHttpRequest();
+  var video = $('video');
+  var url = 'https://www.reddit.com/r/Cinemagraphs/top.json?t=all&limit=50';
 
-  request.onreadystatechange = function() {
-    if (request.readyState === 4 && request.status === 200) {
-      var results = JSON.parse(request.responseText).data.children;
-      var urls = results.map(function(el) { return el.data.url });
-      var rand = Math.floor(Math.random() * 25);
-      var newSrc = urls[rand]
-      newSrc = newSrc.substring(0, newSrc.lastIndexOf('.')) + '.mp4';
+  $.get(url, function(data) {
+    data = data.data.children;
+    var urls = data.map(function(el) { return el.data.url });
+    var rand = Math.floor(Math.random() * 25);
+    var newSrc = urls[rand]
+    newSrc = newSrc.substring(0, newSrc.lastIndexOf('.')) + '.mp4';
 
-      document.querySelector('video > source').src = newSrc;
-      video.load();
-    }
-  }
-
-  request.open('Get', 'https://www.reddit.com/r/Cinemagraphs/top.json?t=all&limit=50');
-  request.send();
+    $('#primarySrc').attr('src', newSrc);
+    video[0].load();
+  });
 }
 
 function toggleFullScreen() {
@@ -94,26 +106,15 @@ function exitFullscreen() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function(event){
-  startTime();
+function toggleBackground() {
+  var video = $('video');
+  background = !background;
 
-  document.querySelector('#sec').addEventListener('click', function(e) {
-    newBackground();
-  });
-
-  document.querySelector('#ampm').addEventListener('click', function(e) {
-    toggleFullScreen();
-  });
-
-  document.querySelector('#time').addEventListener('click', function(e) {
-    var video = document.querySelector('#media > video');
-
-    if (background === true) {
-      video.classList = 'hide';
-      background = false;
-    } else {
-      video.classList = 'show';
-      background = true;
-    }
-  });
-});
+  if (background) {
+    video.removeClass('hide');
+    video.toggleClass('show');
+  } else {
+    video.removeClass('show');
+    video.toggleClass('hide');
+  }
+}

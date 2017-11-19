@@ -2,29 +2,53 @@
 <html>
   <head>
     <title>DeskClock</title>
-    <link type="text/css" rel="stylesheet" href="index.css">
-    <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="clock.js"></script>
+    <script type="text/javascript" src="widgets.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="index.css">
   </head>
   <body>
     <div id="clock">
       <div id="left">
-        <div class="top"></div>
+        <div class="top">
+          <div id="weather">
+            <img id="weather-icon" src=""/>
+            <div id="current-temp"></div>
+            <div id="high-low">
+              <div id="high-temp"></div>
+              <div id="low-temp"></div>
+            </div>
+          </div>
+        </div>
         <div class="middle"></div>
-        <div class="bottom"></div>
+        <div class="bottom">
+          <div id="fact"></div>
+        </div>
       </div>
       <div id="center">
         <h1 id="time"></h1>
       </div>
       <div id="right">
-        <div class="top"></div>
+        <div class="top">
+          <div id="astro">
+            <div id="sun">
+              <div id="sunrise"></div>
+              <div id="sunset"></div>
+            </div>
+            <img id="moon-icon" src=""/>
+          </div>
+        </div>
         <div class="middle"><h4 id="sec"></h4><h4 id="ampm"></h4></div>
-        <div class="bottom"></div>
+        <div class="bottom">
+          <div id="date"></div>
+        </div>
       </div>
     </div>
     <div id="media">
       <video autoplay loop>
-        <source src="https://i.imgur.com/D3o8n6O.mp4" type="video/mp4">
+        <source src="https://i.imgur.com/D3o8n6O.mp4" type="video/mp4" id="primarySrc">
         <source src="https://i.imgur.com/D3o8n6O.mp4" type="video/mp4">
       </video>
     </div>
