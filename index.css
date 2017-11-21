@@ -1,6 +1,6 @@
 * {
   margin: 0;
-  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -13,6 +13,10 @@ html {
 html, body, #clock, #media {
   width: 100vw;
   height: 100vh;
+}
+
+body div {
+  display: flex;
 }
 
 h1 {
@@ -40,49 +44,10 @@ video {
 #clock {
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.1);
-  flex-flow: row nowrap;
 }
 
-#clock, #left, #center, #right, #media, #weather, #high-low, #astro, #sun, .top, .bottom {
-  display: flex;
-}
-
-#left, #right, #high-low, #sun {
-  flex-flow: column nowrap;
-}
-
-#left, #right {
-  width: 25%;
-}
-
-#left div, #sec, #ampm {
-  text-align: left;
-}
-
-#center {
-  width: 50%;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
-#right {
-  text-align: right;
-}
-
-#right div {
-  justify-content: flex-end;
-}
-
-
-#media {
-  justify-content: center;
-  align-items: center;
-}
-
-#weather, #astro {
-  height: 40%;
-  align-items: center;
+#clock, #high-low, #sun, .middle > .right {
+  flex-direction: column;
 }
 
 #weather-icon, #moon-icon {
@@ -91,6 +56,10 @@ video {
 
 #current-temp {
   font-size: 70px;
+}
+
+#astro, #weather-icon {
+  padding-top: 8px;
 }
 
 #high-low, #sun, #fact, #date {
@@ -113,17 +82,62 @@ video {
   padding-right: 5px;
 }
 
-.top, .bottom {
-  height: 40%;
-  padding: 10px;
+.top, .middle, .bottom {
+  width: 100%;
 }
 
-.bottom {
+.top, .bottom {
+  height: 20%;
+}
+
+.top > div {
+  align-items: flex-start;
+}
+
+.middle > div, #astro, #weather {
+  align-items: center;
+}
+
+.bottom > div {
   align-items: flex-end;
+  padding-bottom: 8px;
 }
 
 .middle {
-  height: 20%;
+  height: 60%;
+}
+
+.left, .center, .right {
+  height: 100%;
+  flex-grow: 1;
+  padding: 0 8px;
+}
+
+.left, .middle > .right {
+  justify-content: flex-start;
+}
+
+.left, .right {
+  max-width: 50%;
+}
+
+.right {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.middle > .center {
+  width: 60%;
+  justify-content: center;
+}
+
+.middle > .right {
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.middle > .left, .middle > .right {
+  width: 20%;
 }
 
 .hide {

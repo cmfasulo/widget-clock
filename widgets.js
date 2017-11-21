@@ -38,11 +38,29 @@ function getWeather() {
 
 function getAstro(astro) {
   var date = new Date();
-  dateStr = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+  var dateStr = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
   var url = 'http://api.usno.navy.mil/moon/phase?date=' + dateStr + '&nump=1';
+  var phases = [
+    'New',
+    'Waxing Crescent',
+    'First Quarter',
+    'Waxing Gibbous',
+    'Full',
+    'Waning Gibbous',
+    'Last Quarter',
+    'Waning Crescent'
+  ];
+
   $.get(url, function(data) {
-    var phase = data.phasedata[0].phase + '.png';
-    phase = phase.replace(/\s/g, '');
+    var phaseDay = data.phasedata[0].date.split(' ')[2];
+    var phase = data.phasedata[0].phase;
+    var phaseIdx = phases.indexOf(phase);
+
+    if (parseInt(phaseDay) - parseInt(date.getDate()) > 3) {
+      phase = phaseIdx === 0 ? phases[phases.length - 1] : phases[phaseIdx - 1];
+    }
+
+    phase = phase.replace(/\s/g, '') + '.png';
 
     $('#moon-icon').attr('src', 'images/' + phase);
     $('#sunrise').html(astro.sunrise);
@@ -67,7 +85,7 @@ function getFact() {
   $.getJSON(url, function(data) {
     var headline = randomFact(data);
 
-    while (headline.length > 50) {
+    while (headline.length > 125) {
       headline = randomFact(data);
     }
 

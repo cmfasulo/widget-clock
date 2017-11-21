@@ -11,8 +11,8 @@
   </head>
   <body>
     <div id="clock">
-      <div id="left">
-        <div class="top">
+      <div class="top">
+        <div class="left">
           <div id="weather">
             <img id="weather-icon" src=""/>
             <div id="current-temp"></div>
@@ -22,16 +22,7 @@
             </div>
           </div>
         </div>
-        <div class="middle"></div>
-        <div class="bottom">
-          <div id="fact"></div>
-        </div>
-      </div>
-      <div id="center">
-        <h1 id="time"></h1>
-      </div>
-      <div id="right">
-        <div class="top">
+        <div class="right">
           <div id="astro">
             <div id="sun">
               <div id="sunrise"></div>
@@ -40,17 +31,32 @@
             <img id="moon-icon" src=""/>
           </div>
         </div>
-        <div class="middle"><h4 id="sec"></h4><h4 id="ampm"></h4></div>
-        <div class="bottom">
-          <div id="date"></div>
+      </div>
+
+      <div class="middle">
+        <div class="left"></div>
+        <div class="center">
+          <h1 id="time"></h1>
+        </div>
+
+        <div class="right">
+          <h4 id="sec"></h4>
+          <h4 id="ampm"></h4>
         </div>
       </div>
+
+      <div class="bottom">
+        <div class="left" id="fact"></div>
+        <div class="right" id="date"></div>
+      </div>
     </div>
+
     <div id="media">
       <video autoplay loop>
         <source src="https://i.imgur.com/D3o8n6O.mp4" type="video/mp4" id="primarySrc">
         <source src="https://i.imgur.com/D3o8n6O.mp4" type="video/mp4">
       </video>
     </div>
+
   </body>
 </html>
