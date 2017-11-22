@@ -85,7 +85,7 @@ function getFact() {
   $.getJSON(url, function(data) {
     var headline = randomFact(data);
 
-    while (headline.length > 125) {
+    while (headline.length > 100) {
       headline = randomFact(data);
     }
 

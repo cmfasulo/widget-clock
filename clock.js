@@ -107,14 +107,18 @@ function exitFullscreen() {
 }
 
 function toggleBackground() {
-  var video = $('video');
+  var elements = $('video, .top, .bottom');
   background = !background;
 
   if (background) {
-    video.removeClass('hide');
-    video.toggleClass('show');
+    elements.removeClass('hide');
+    elements.toggleClass('show');
   } else {
-    video.removeClass('show');
-    video.toggleClass('hide');
+    elements.removeClass('show');
+    elements.toggleClass('hide');
   }
+
+  $('.middle').toggleClass('large');
+  $('h1').toggleClass('large-clock');
+  $('h4').toggleClass('large-sec');
 }

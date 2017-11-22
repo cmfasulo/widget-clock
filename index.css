@@ -23,11 +23,13 @@ h1 {
   font-size: 30vw;
   margin-top: -25px;
   letter-spacing: 10px;
+  transition: font-size 2s;
 }
 
 h4 {
   font-size: 5vw;
   margin-left: 10px;
+  transition: font-size 2s;
 }
 
 video {
@@ -150,4 +152,17 @@ video {
   visibility: visible;
   opacity: 1;
   transition: visibility 2s, opacity 1s linear;
+}
+
+.large {
+  height: 100%;
+}
+
+.large-clock {
+  font-size: 40vw;
+}
+
+.large-sec {
+  font-size: 8vw;
+  padding-left: 20px;
 }
