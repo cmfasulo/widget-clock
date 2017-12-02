@@ -41,11 +41,11 @@ function getAstro(astro) {
   var dateStr = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
   var url = 'http://api.usno.navy.mil/moon/phase?date=' + dateStr + '&nump=1';
   var phases = [
-    'New',
+    'New Moon',
     'Waxing Crescent',
     'First Quarter',
     'Waxing Gibbous',
-    'Full',
+    'Full Moon',
     'Waning Gibbous',
     'Last Quarter',
     'Waning Crescent'
