@@ -44,7 +44,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
 def run():
 	address = '127.0.0.1'
 	port = 8080
-	print(f'Starting widget-clock web server at {address}:{port}')
+	print('Starting widget-clock web server at ' + address + ':' + str(port))
 
 	server_address = (address, port)
 	httpd = HTTPServer(server_address, testHTTPServer_RequestHandler)
